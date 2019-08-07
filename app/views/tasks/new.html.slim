@@ -1,0 +1,7 @@
+h2 タスク追加
+
+=form_with model: @task, local: true do |f|
+  .form_group
+    =f.label :title
+    =f.text_field :title, class: 'form-control', id: 'task_name'
+  = f.submit nil, class: 'btn btn-primary'

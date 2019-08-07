@@ -1,0 +1,25 @@
+h2 =@task.title
+
+.nav.justify-content-end
+  =link_to '一覧', root_path, class: 'nav-link'
+
+=form_with model: @task, local: true do |f|
+  .form_group
+    =f.label :title
+    =f.text_field :title, class: 'form-control', id: 'task_name'
+  .form_group
+    =f.label :content
+    =f.text_field :content, class: 'form-control', id: 'task_name'
+  .form_group
+    =f.label :finished
+    =f.text_field :finished, class: 'form-control', id: 'task_name'
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  = f.submit nil, class: 'btn btn-primary'
