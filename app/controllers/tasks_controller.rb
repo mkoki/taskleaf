@@ -15,9 +15,12 @@ class TasksController < ApplicationController
   end
 
   def create
-    task = Task.new(task_params)
-    task.save
-    redirect_to tasks_path
+    @task = Task.new(task_params)
+    if @task.save
+      redirect_to root_path
+    else
+      render 'new'
+    end
   end
 
   def destroy
@@ -25,7 +28,13 @@ class TasksController < ApplicationController
     task.destroy
     redirect_to root_path
   end
-  
+
+  def start_time
+    task = Task.find(params[:id])
+    task.update!(start_time: Time.now)
+    redirect_to root_path
+  end
+
   private
 
   def task_params
