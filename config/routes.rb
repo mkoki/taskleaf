@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  namespace :admin do
+    resources :users
+  end
+
   root 'tasks#index'
+  
   resources :tasks do
-    get 'start_time' => 'tasks#start_time'
+    get 'start_time', to: 'tasks#start_time'
   end
 end

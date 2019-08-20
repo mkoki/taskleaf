@@ -1,19 +1,35 @@
 h1 タスク一覧
 
+ul.navbar-nav.ml-auto
+  - if current_user
+    li.nav-item= link_to new_task_path, class: 'nav-link' do
+      | タスク一覧
+      - if current_user.admin?
+        li.nav-item= link_to  admin_users_path, class: 'nav-link' do
+        | ユーザー一覧
+        span
+        li.nav-item= link_to  logout_path, class: 'nav-link' do
+        | ログアウト
+  - else
+    li.nav-item= link_to  login_path, class: 'nav-link' do
+    | ログイン
+    
 = link_to '新規タスク', new_task_path, class: 'btn btn-primary'
-
+= link_to 'signup', new_admin_user_path, class: 'btn btn-primary'
 .mb-3
 table.table.table-hover
   thead.thead-default
     tr 
       th= Task.human_attribute_name(:title)
       th= Task.human_attribute_name(:created_at)
+      th= Task.human_attribute_name(:finished)
     tbody
       - @tasks.each do |task|
         tr
           td= link_to task.title, task_path(task)
           td= task.created_at
-          td= link_to '開始', task_start_time_path(task)
+          td= task.finished? ? '完了' : '未完'
+          td= button_to '開始'
           td= button_to '終了'
           td= link_to '編集', task_path(task), class: 'btn btn-primary mr-3'
           td= link_to '削除', task, method: :delete, class: 'btn btn-danger',

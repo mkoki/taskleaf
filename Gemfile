@@ -8,6 +8,7 @@ gem 'html2slim'
 gem 'pry-rails'
 gem 'pry-byebug'
 gem 'pry-doc'
+gem 'bcrypt'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
