@@ -1,6 +1,16 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks.order(created_at: :desc)
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @tasks.generate_csv, file_name: "tasks-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
+    end
+
+    # gon.data = []
+    # 6.times do
+    #   gon.data << @tasks.time
+    # end
   end
 
   def show
@@ -16,6 +26,12 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.new(task_params)
+
+    if params[:back].present?
+      render :new
+      return
+    end
+
     if @task.save
       redirect_to root_path
     else
@@ -24,9 +40,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    task = Task.find(params[:id])
-    task.destroy
-    redirect_to root_path
+    @task = Task.find(params[:id])
+    @task.destroy
   end
 
   def start_time
@@ -35,10 +50,25 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
+  def update
+    task = Task.find(params[:id])
+    task.update!(all_task_params)
+    redirect_to root_path
+  end
+
+  def import
+    current_user.tasks.import(params[:file])
+    redirect_to tasks_url, notice: 'タスクを追加しました'
+  end
+
   private
 
   def task_params
     params.require(:task).permit(:title, :finished)
+  end
+
+  def all_task_params
+    params.require(:task).permit(:title, :finished, :content)
   end
 
 end

@@ -1,0 +1,15 @@
+.modal-dialog role='document'
+  .modal-content
+
+    =form_with model: @task, local: true do |f|
+
+      .modal-header
+        h5.modal-title 新規タスク登録
+        button type='button' class="close" data-dismiss="modal" aria-label="Close"
+
+      .modal-body
+
+        .form_group
+          =f.label :title, 'title'
+          =f.text_field :title, class: 'form-control', id: 'task_name'
+        = f.submit nil, class: 'btn btn-primary'

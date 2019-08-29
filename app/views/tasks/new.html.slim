@@ -1,7 +1,8 @@
 h2 タスク追加
 
-=form_with model: @task, local: true do |f|
-  .form_group
-    =f.label :title
-    =f.text_field :title, class: 'form-control', id: 'task_name'
-  = f.submit nil, class: 'btn btn-primary'
+.nav.justify-content-end 
+  = link_to '一覧へ', root_path, class: 'nav-link'
+
+= render partial: 'form', locals: {task: @task}
+
+

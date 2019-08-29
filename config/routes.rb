@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   
   resources :tasks do
     get 'start_time', to: 'tasks#start_time'
+    post :import, on: :collection
   end
 end
