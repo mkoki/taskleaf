@@ -46,7 +46,14 @@ class TasksController < ApplicationController
 
   def start_time
     task = Task.find(params[:id])
-    task.update!(start_time: Time.now)
+    task.update!(start_time: Time.current)
+    task.save
+  end
+
+  def end_time
+    task = Task.find(params[:id])
+    task.update!(end_time: Time.current, finished: 1)
+    task.save
     redirect_to root_path
   end
 

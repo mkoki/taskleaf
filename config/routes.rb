@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   root 'tasks#index'
   
   resources :tasks do
-    get 'start_time', to: 'tasks#start_time'
     post :import, on: :collection
+    
+    member do
+      post '/start_time', to: 'tasks#start_time'
+      post '/end_time', to: 'tasks#end_time'
+    end
   end
+
 end
