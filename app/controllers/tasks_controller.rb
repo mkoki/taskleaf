@@ -1,16 +1,12 @@
 class TasksController < ApplicationController
   def index
-    @tasks = current_user.tasks.order(created_at: :desc)
+    @tasks = current_user.tasks.order('finished ASC')
 
     respond_to do |format|
       format.html
       format.csv {send_data @tasks.generate_csv, file_name: "tasks-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
     end
 
-    # gon.data = []
-    # 6.times do
-    #   gon.data << @tasks.time
-    # end
   end
 
   def show
@@ -46,7 +42,14 @@ class TasksController < ApplicationController
 
   def start_time
     task = Task.find(params[:id])
-    task.update!(start_time: Time.now)
+    task.update!(start_time: Time.current)
+    task.save
+  end
+
+  def end_time
+    task = Task.find(params[:id])
+    task.update!(end_time: Time.current, finished: 1)
+    task.save
     redirect_to root_path
   end
 

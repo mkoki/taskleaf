@@ -6,6 +6,8 @@ class Task < ApplicationRecord
     belongs_to :user
     has_one_attached :image
 
+    default_scope -> { order(finished: :asc) }
+
     def self.csv_attributes
         ["id", "title", "content", "user_id", "created_at", "time"]
     end
