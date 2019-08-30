@@ -49,6 +49,10 @@ class TasksController < ApplicationController
   def end_time
     task = Task.find(params[:id])
     task.update!(end_time: Time.current, finished: 1)
+    start_time_at = task[:start_time]
+    end_time_at = task[:end_time]
+    time = Time.at(end_time_at - start_time_at)
+    task.update!(time: time)
     task.save
     redirect_to root_path
   end
