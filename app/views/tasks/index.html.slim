@@ -39,8 +39,27 @@ table.table.table-hover
                       }
 
 canvas id="myChart" width="200" height="100"
-script draw_graph();
-
+javascript:
+  var ctx = document.getElementById("myChart").getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: #{@tasks_title.to_json.html_safe},
+          datasets: [{
+              label: "サンプル",
+              data: #{@tasks_time.to_json.html_safe},
+              backgroundColor: 'rgba(255, 99, 132, 1.0)',
+              borderColor: 'rgba(255, 50, 132, 1.0)',
+              fill: false
+          }]
+      },
+      options: {
+          title:  {
+            display: true,
+            text: "タイトル"
+          }
+      }
+  });
 =link_to 'エクスポート', tasks_path(format: :csv), class: 'btn btn-primary mb-3'
 
 = form_tag import_tasks_path, multipart: true, class: 'mb-3' do
