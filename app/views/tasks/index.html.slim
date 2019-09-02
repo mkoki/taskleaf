@@ -31,15 +31,13 @@ table.table.table-hover
           td= button_to '開始', start_time_task_path(task.id)
           td= button_to '終了', end_time_task_path(task.id)
           td= link_to '編集', task_path(task), class: 'btn btn-primary mr-3'
-          td= link_to '削除', task, method: :delete, remote: true, class: 'btn btn-danger delete',
+          td= link_to '削除', task, method: :delete, class: 'btn btn-danger delete',
                   data: {confirm: "本当に#{task.title}を削除しますか？", 
                         cancel: "キャンセル", 
                         commit: "削除する", 
                         title: "削除の確認",
                       }
-
-canvas id="myChart" width="200" height="100"
-script draw_graph();
+= render 'gragh'
 
 =link_to 'エクスポート', tasks_path(format: :csv), class: 'btn btn-primary mb-3'
 
