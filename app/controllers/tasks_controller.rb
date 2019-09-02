@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   def index
-    @tasks = current_user.tasks.order('finished ASC')
-    tasks = current_user.tasks.pluck(:title, :time)
+    @tasks = current_user.tasks.where("created_at >= ?", Time.zone.now.beginning_of_day).order('finished ASC')
+    tasks = current_user.tasks.where("created_at >= ?", Time.zone.now.beginning_of_day).pluck(:title, :time)
     @tasks_title = tasks.map(&:first)
     @tasks_time = tasks.map(&:second)
 

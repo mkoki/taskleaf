@@ -1,19 +1,4 @@
-= link_to '新規タスク', new_task_path, remote: true, class: 'btn btn-info btn-block active d-block'
-
-.modal.fade.bs-example-modal-lg id="task-modal" tabindex='-1' role='dialog' aria-labelledby="Modal Title" aria-hidden='true'
-  .modal-dialog.modal-lg
-    .modal-content
-      .modal-header
-        button.close type='button' data-dismiss='modal'
-          span aria-hidden='true' &times;
-          span.sr-only Close
-        h4.modal-title = "Modal Title"
-      .modal-body
-        p Body
-      .modal-footer
-        button.btn.btn-danger type='button' data-dismiss='modal' Close
-        button.btn.btn-primary type='button' Save
-
+.h2 今日のタスク
 ul.navbar-nav.ml-auto
 .mb-3
 table.table.table-hover
@@ -37,6 +22,23 @@ table.table.table-hover
                         commit: "削除する", 
                         title: "削除の確認",
                       }
+
+= link_to '新規タスク', new_task_path, remote: true, class: 'btn btn-info btn-block active d-block'
+
+.modal.fade.bs-example-modal-lg id="task-modal" tabindex='-1' role='dialog' aria-labelledby="Modal Title" aria-hidden='true'
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close type='button' data-dismiss='modal'
+          span aria-hidden='true' &times;
+          span.sr-only Close
+        h4.modal-title = "Modal Title"
+      .modal-body
+        p Body
+      .modal-footer
+        button.btn.btn-danger type='button' data-dismiss='modal' Close
+        button.btn.btn-primary type='button' Save
+
 = render 'gragh'
 
 =link_to 'エクスポート', tasks_path(format: :csv), class: 'btn btn-primary mb-3'

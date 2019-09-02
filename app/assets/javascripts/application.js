@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery3
+//= require owl.carousel
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
