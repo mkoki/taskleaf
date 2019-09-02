@@ -1,0 +1,22 @@
+canvas id="myChart" width="200" height="100"
+javascript:
+  var ctx = document.getElementById("myChart").getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: #{@tasks_title.to_json.html_safe},
+          datasets: [{
+              label: "タスク毎の時間",
+              data: #{@tasks_time.to_json.html_safe},
+              backgroundColor: 'rgba(255, 99, 132, 1.0)',
+              borderColor: 'rgba(255, 50, 132, 1.0)',
+              fill: false
+          }]
+      },
+      options: {
+          title:  {
+            display: true,
+            text: "タイトル"
+          }
+      }
+  });
