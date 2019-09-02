@@ -12,4 +12,7 @@
         .form_group
           =f.label :title, 'title'
           =f.text_field :title, class: 'form-control', id: 'task_name'
+        .form_group
+          =f.label :when, 'when'
+          =f.text_field :when, class: 'date-picker', id: 'task_name'
         = f.submit nil, class: 'btn btn-primary'

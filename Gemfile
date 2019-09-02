@@ -12,6 +12,10 @@ gem 'pry-byebug'
 gem 'pry-doc'
 gem 'bcrypt'
 gem 'sidekiq'
+gem 'owlcarousel-rails'
+gem 'jquery-ui-rails'
+gem 'bootstrap-datepicker-rails'
+
 
 gem 'gon', '~> 6.2.0'
 gem 'chart-js-rails', '~> 0.1.4'
