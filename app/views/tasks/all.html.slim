@@ -6,13 +6,11 @@ table.table.table-hover
   thead.thead-default
     tr 
       th= Task.human_attribute_name(:title)
-      th= Task.human_attribute_name(:created_at)
       th= Task.human_attribute_name(:finished)
     tbody
       - @tasks.each do |task|
         tr id='task-#{task.id}'
           td= link_to task.title, task_path(task)
-          td= task.created_at
           td= task.finished? ? '完了' : '未完'
           td= button_to '開始', start_time_task_path(task.id)
           td= button_to '終了', end_time_task_path(task.id)

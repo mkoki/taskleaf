@@ -4,13 +4,11 @@ table.table.table-hover
   thead.thead-default
     tr 
       th= Task.human_attribute_name(:title)
-      th= Task.human_attribute_name(:created_at)
       th= Task.human_attribute_name(:finished)
     tbody
       - @tasks.each do |task|
         tr id='task-#{task.id}'
           td= link_to task.title, task_path(task)
-          td= task.created_at
           td= task.finished? ? '完了' : '未完'
           td= button_to '開始', start_time_task_path(task.id)
           td= button_to '終了', end_time_task_path(task.id)
@@ -24,7 +22,7 @@ table.table.table-hover
 .container style="position: relative"
   input type='text' class='datetimepicker-input' data-toggle='datetimepicker' data-target='#datatimepicker' id='datatimepicker'
 
-= link_to '新規タスク', new_task_path, remote: true, class: 'btn btn-info btn-block active d-block'
+= link_to '新規タスク', new_task_path, remote: true, class: 'btn btn-info btn-block active d-block datetimepicker-input', id:'datetimepicker'
 
 .modal.fade.bs-example-modal-lg id="task-modal" tabindex='-1' role='dialog' aria-labelledby="Modal Title" aria-hidden='true'
   .modal-dialog.modal-lg
