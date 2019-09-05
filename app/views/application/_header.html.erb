@@ -6,6 +6,9 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
   </div>
   <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'タスク一覧', all_tasks_path, class: 'nav-link'%></li>
+        <li><%= link_to '今日のタスクへ', root_path, class: 'nav-link'%></li>
+
         <% if current_user %>
           <li><%= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'%>
           <% if current_user.admin?%>

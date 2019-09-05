@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
-gem 'jquery-rails'
 gem 'bootstrap'
 gem 'webpacker'
 gem 'slim-rails'
@@ -12,6 +11,11 @@ gem 'pry-byebug'
 gem 'pry-doc'
 gem 'bcrypt'
 gem 'sidekiq'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'momentjs-rails'
+gem "bootstrap4-datetime-picker-rails"
+gem 'font-awesome-rails'
 
 gem 'gon', '~> 6.2.0'
 gem 'chart-js-rails', '~> 0.1.4'
